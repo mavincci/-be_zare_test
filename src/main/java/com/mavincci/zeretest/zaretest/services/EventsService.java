@@ -41,4 +41,17 @@ public class EventsService {
 
       return tempEvents.stream().map(EventDto::fromEntity).toList();
    }
+
+   public List<Event> latest20Events() {
+      final var cachedEvents = eventCache.fetch(20);
+
+//      final var diff = 20 - cachedEvents.size();
+//
+//      if (diff == 0) return cachedEvents;
+//
+//      final var fromDb = eventsRepository.findAll(
+//            PageRequest.of(0, diff, Sort.by("timestamp").descending()));
+
+      return cachedEvents;
+   }
 }

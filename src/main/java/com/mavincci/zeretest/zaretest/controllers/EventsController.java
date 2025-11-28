@@ -3,6 +3,7 @@ package com.mavincci.zeretest.zaretest.controllers;
 import com.mavincci.zeretest.zaretest.dtos.AddEventDto;
 import com.mavincci.zeretest.zaretest.dtos.EventDto;
 import com.mavincci.zeretest.zaretest.entities.AuthUser;
+import com.mavincci.zeretest.zaretest.entities.Event;
 import com.mavincci.zeretest.zaretest.services.EventsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,8 +29,8 @@ class EventsController {
    }
 
    @GetMapping("/recent")
-   public String recentEvents() {
-      return "REcent events";
+   public List<Event> recentEvents() {
+      return eventsService.latest20Events();
    }
 
    @GetMapping("/summary")
