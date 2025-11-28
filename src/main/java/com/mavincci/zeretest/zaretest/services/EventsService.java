@@ -2,6 +2,7 @@ package com.mavincci.zeretest.zaretest.services;
 
 import com.mavincci.zeretest.zaretest.dtos.AddEventDto;
 import com.mavincci.zeretest.zaretest.dtos.EventDto;
+import com.mavincci.zeretest.zaretest.entities.AuthUser;
 import com.mavincci.zeretest.zaretest.entities.Event;
 import com.mavincci.zeretest.zaretest.entities.EventType;
 import com.mavincci.zeretest.zaretest.repositories.EventsRepository;
@@ -17,11 +18,11 @@ public class EventsService {
    private final EventsRepository eventsRepository;
    private final EventCache eventCache;
 
-   public List<EventDto> addEvents(List<AddEventDto> req) {
+   public List<EventDto> addEvents(List<AddEventDto> req, AuthUser user) {
       final var reqTime = LocalDateTime.now();
 
       final var tempEvents = req.stream().map((e) -> Event.builder()
-            .userId(1L)
+            .userId(user.getId())
             .eventType(EventType.valueOf(e.eventType()))
             .productId(e.productId())
             .category(e.category())

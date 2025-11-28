@@ -2,8 +2,10 @@ package com.mavincci.zeretest.zaretest.controllers;
 
 import com.mavincci.zeretest.zaretest.dtos.AddEventDto;
 import com.mavincci.zeretest.zaretest.dtos.EventDto;
+import com.mavincci.zeretest.zaretest.entities.AuthUser;
 import com.mavincci.zeretest.zaretest.services.EventsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +23,8 @@ class EventsController {
    }
 
    @PostMapping
-   public List<EventDto> addEvents(@RequestBody List<AddEventDto> req) {
-      return eventsService.addEvents(req);
+   public List<EventDto> addEvents(@RequestBody List<AddEventDto> req, @AuthenticationPrincipal AuthUser user) {
+      return eventsService.addEvents(req, user);
    }
 
    @GetMapping("/recent")
