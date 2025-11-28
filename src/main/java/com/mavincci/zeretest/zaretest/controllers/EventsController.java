@@ -14,6 +14,7 @@ import java.util.List;
 class EventsController {
    private final EventsService eventsService;
 
+
    @GetMapping
    public List<EventDto> getEvents() {
       return eventsService.getEvents();

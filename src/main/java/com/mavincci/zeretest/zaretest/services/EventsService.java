@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EventsService {
    private final EventsRepository eventsRepository;
+   private final EventCache eventCache;
 
    public List<EventDto> addEvents(List<AddEventDto> req) {
       final var reqTime = LocalDateTime.now();
@@ -28,6 +29,8 @@ public class EventsService {
             .build()).toList();
 
       final var savedEvents = eventsRepository.saveAll(tempEvents);
+
+      eventCache.addEvents(savedEvents);
 
       return savedEvents.stream().map(EventDto::fromEntity).toList();
    }
