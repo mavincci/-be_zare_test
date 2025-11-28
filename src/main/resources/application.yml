@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:9354/db_pg_zare_test
+    username: usr_pg_zare_test
+    password: pass_pg_zare_test
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
